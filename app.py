@@ -7,6 +7,7 @@ import numpy as np
 from skimage import transform
 
 rslt = None
+file = None
 
 app = Flask(__name__)
 
@@ -22,7 +23,7 @@ def upload():
 
 @app.route("/predict", methods=["POST","GET"])
 def predict():
-    global rslt
+    global rslt, file
     if request.method == "POST":
         class_label = ["Fake","Real"]
         f = request.files['file']
@@ -46,10 +47,10 @@ def predict():
 
 @app.route("/result")
 def result():
-    global rslt
+    global rslt, file
     if rslt==None:
         return render_template('index.html')
-    return render_template('result.html',rslt=rslt)
+    return render_template('result.html',rslt=rslt, file=file)
 
 @app.errorhandler(404)
 def page_not_found(error):
