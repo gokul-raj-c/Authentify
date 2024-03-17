@@ -3,3 +3,4 @@ numpy
 pillow
 scikit-image
 tensorflow
+keras==2.15

@@ -13,6 +13,8 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = "static/uploads"
 
+model = load_model("model/densenet.h5") 
+
 @app.route("/")
 def index():
     return render_template("index.html") 
@@ -23,7 +25,7 @@ def upload():
 
 @app.route("/predict", methods=["POST","GET"])
 def predict():
-    global rslt, file
+    global rslt, file, model
     if request.method == "POST":
         class_label = ["Fake","Real"]
         f = request.files['file']
@@ -33,8 +35,6 @@ def predict():
         pt = os.path.join(os.getcwd(), UPLOAD_FOLDER, filename)
 
         file = filename
-
-        model = load_model("model/densenet.h5") 
 
         image = load(pt) 
         pred = model.predict(image)
