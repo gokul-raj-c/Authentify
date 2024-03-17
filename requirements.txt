@@ -4,3 +4,5 @@ pillow
 scikit-image
 tensorflow
 keras==2.15
+mtcnn
+opencv-python
