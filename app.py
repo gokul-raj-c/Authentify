@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = "static/uploads"
 
-model = load_model("model\deepfake_resnet50.h5") 
+model = load_model("model\densenet.h5") 
 detector = MTCNN()
 
 @app.route("/")
