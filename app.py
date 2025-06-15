@@ -18,6 +18,7 @@ UPLOAD_FOLDER = "static/uploads"
 model = load_model("model\densenet.h5") 
 detector = MTCNN()
 
+
 @app.route("/")
 def index():
     return render_template("index.html") 
@@ -53,6 +54,9 @@ def predict():
             face_image = np.expand_dims(face_image, axis=0)
 
             pred = model.predict(face_image)
+            print(pred
+                  
+                  )
             c = np.argmax(pred)
             rslt = class_label[c]
             return "done"
